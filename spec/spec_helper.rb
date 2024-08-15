@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
-require "null_association"
+require 'null_association'
+require 'temporary_tables'
+require 'active_record'
+
+ActiveRecord::Base.logger = Logger.new(STDOUT) if ENV.key?('DEBUG')
+ActiveRecord::Base.establish_connection(
+  ENV.fetch('DATABASE_URL') { 'sqlite3::memory:' },
+)
 
 RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
+  include TemporaryTables::Methods
 
-  # Disable RSpec exposing methods globally on `Module` and `main`
+  config.expect_with(:rspec) { _1.syntax = :expect }
   config.disable_monkey_patching!
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
 end

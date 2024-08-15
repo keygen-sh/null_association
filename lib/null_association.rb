@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'null_association/version'
+require 'active_support'
+require 'active_record'
 
-module NullAssociation
-end
+require_relative 'null_association/concern'
+require_relative 'null_association/decorator'
+require_relative 'null_association/version'
+require_relative 'null_association/railtie'
+
+module NullAssociation; end
+
