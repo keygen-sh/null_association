@@ -45,9 +45,16 @@ To use a null object, define an optional singular association and use the
 the association is nil, the null object will be returned instead.
 
 ```ruby
-class NullPlan
+class NullObject
   include Singleton
 
+  def present? = false
+  def blank?   = true
+end
+```
+
+```ruby
+class NullPlan < NullObject
   def name  = 'Free'
   def free? = true
   def pro?  = false
@@ -56,9 +63,7 @@ end
 ```
 
 ```ruby
-class NullBilling
-  include Singleton
-
+class NullBilling < NullObject
   def subscribed? = true
   def trialing?   = false
   def canceled?   = false
