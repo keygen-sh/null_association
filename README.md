@@ -41,8 +41,8 @@ $ gem install null_association
 ## Usage
 
 To use a null object, define an optional singular association and use the
-`null_object:` keyword, which accepts a class, a string, or an instance. When
-the association is nil, the null object will be returned instead.
+`null_object:` keyword, which accepts a class name, a class, or an instance.
+When the association is nil, the null object will be returned instead.
 
 ```ruby
 class NullObject
